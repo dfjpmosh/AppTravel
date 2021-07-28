@@ -1,8 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<AppTravel.Core.BusinessModels.SearchHotelViewModel>
+@{
+    ViewData["Title"] = "AppTravel";
+    List<SelectListItem> cities = (List<SelectListItem>)ViewBag.cities;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@using(Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Hoteles</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.DropDownList("CityState", cities, "Selecciona una opción")
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
 </div>
+}
+@*<center>
+    <h2>Lista de Hoteles</h2>
+    <hr />
+    <input type="text" id="txt" readonly="readonly" />
+    @Html.DropDownList("city", hotels, "Selecciona una opción", new { @onChange = "selectedtext(this)" })
+</center>
+
+<script>
+    function selectedtext(ddlitem) {
+        var seltext = ddlitem.options[ddlitem.selectedIndex].innerHTML;
+        $('#txt').val(seltext);
+    }
+</script>*@

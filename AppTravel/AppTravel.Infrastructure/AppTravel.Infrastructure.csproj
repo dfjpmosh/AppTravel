@@ -6,8 +6,15 @@
 
   <ItemGroup>
     <Folder Include="DBModel\" />
-    <Folder Include="ExternalServices\" />
     <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppTravel.Core\AppTravel.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,10 @@
-﻿using AppTravel.Web.Models;
+﻿using AppTravel.Core.BusinessModels;
+using AppTravel.Infrastructure.ExternalServices;
+using AppTravel.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,8 +22,44 @@ namespace AppTravel.Web.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var lstCities = await Hoteles.GetCityState();
+
+            List<SelectListItem> cities = lstCities.ConvertAll(h =>
+            {
+                return new SelectListItem()
+                {
+                    Text = h.CityState.ToString().Trim(),
+                    Value = h.CityState.ToString().Trim(),
+                    Selected = false
+                };
+            });
+
+            ViewBag.cities = cities;
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Index(SearchHotelViewModel obj)
+        {
+            var lstCities = await Hoteles.GetCityState();
+
+            List<SelectListItem> cities = lstCities.ConvertAll(h =>
+            {
+                return new SelectListItem()
+                {
+                    Text = h.CityState.ToString().Trim(),
+                    Value = h.CityState.ToString().Trim(),
+                    Selected = false
+                };
+            });
+
+            ViewBag.cities = cities;
+            
+            string d = obj.CityState;
+            
             return View();
         }
 
@@ -33,5 +73,11 @@ namespace AppTravel.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+    }
+
+    public class City
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
