@@ -29,6 +29,7 @@ namespace AppTravel.Infrastructure.ExternalServices
                 IdHotel = 2,
                 IdState = id,
                 IdCity = model.Id,
+                HotelName = "Hotel 2",
                 State = stateName.Trim(),
                 City = model.City.Trim()
             };

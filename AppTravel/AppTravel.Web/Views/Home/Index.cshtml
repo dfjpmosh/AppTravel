@@ -17,23 +17,11 @@
             @Html.DropDownList("CityState", cities, "Selecciona una opción")
         </div>
     </div>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Buscar Destino" class="btn btn-primary" />
         </div>
     </div>
 </div>
 }
-@*<center>
-    <h2>Lista de Hoteles</h2>
-    <hr />
-    <input type="text" id="txt" readonly="readonly" />
-    @Html.DropDownList("city", hotels, "Selecciona una opción", new { @onChange = "selectedtext(this)" })
-</center>
-
-<script>
-    function selectedtext(ddlitem) {
-        var seltext = ddlitem.options[ddlitem.selectedIndex].innerHTML;
-        $('#txt').val(seltext);
-    }
-</script>*@

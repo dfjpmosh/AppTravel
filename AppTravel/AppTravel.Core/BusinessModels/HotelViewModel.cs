@@ -11,6 +11,7 @@ namespace AppTravel.Core.BusinessModels
         public int IdHotel { get; set; }
         public int IdState { get; set; }
         public int IdCity { get; set; }
+        public string HotelName { get; set; }
         public string State { get; set; }
         public string City { get; set; }
     }

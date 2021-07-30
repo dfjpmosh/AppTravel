@@ -1,0 +1,42 @@
+﻿@model IEnumerable<AppTravel.Core.BusinessModels.HotelViewModel>
+
+@{
+    ViewData["Title"] = "Hoteles Disponibles";
+    string cityState = ViewBag.CityState;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<br />
+
+<div class="font-weight-bold">
+    @Html.Label("Destino")
+</div>
+<div>    
+    @Html.Label(cityState)
+</div>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                HOTEL
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HotelName)
+            </td>
+            <td>
+                @Html.ActionLink("Seleccionar", "SelectHotel", new { item.IdHotel, item.IdState, item.IdCity }) 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

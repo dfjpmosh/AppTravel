@@ -30,9 +30,19 @@ namespace AppTravel.Infrastructure.ExternalServices
                 IdHotel = 1,
                 IdState = model.Id,
                 IdCity = model.Id,
+                HotelName = "Hotel 1",
                 State = model.Location.Split(',')[1].Trim(),
                 City = model.Location.Split(',')[0].Trim()
             };
+        }
+
+        public static async Task<string> AddReservation(ReservationCommandModel reservationCommandModel)
+        {
+            var url = "https://academy-dotnet-hotel1.azurewebsites.net/api/room/1";
+            var client = new HttpClient();
+            var responseBody = await client.GetStringAsync(url);
+            var lstHotel = JsonConvert.DeserializeObject<List<Hotel1>>(responseBody).Select(x => ConvertToHotelViewModel(x)).ToList();
+            return null;
         }
     }    
 }
